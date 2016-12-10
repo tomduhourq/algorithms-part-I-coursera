@@ -9,11 +9,12 @@ package week01;
  * Find/Connected: O(2n) = O(n) - includes costs of finding roots
  * Union: O(2n) = O(n) - includes costs of finding roots
  *
- * The defect is that Find is expensive here.
+ * The defect is that Find is expensive here, and that
+ * `tall` trees may be generated
  */
-public class QuickUnionUF extends BaseUF {
+public class QuickUnion extends BaseUF {
 
-    public QuickUnionUF(int N) {
+    public QuickUnion(int N) {
         this.elements = initializeElements(N);
     }
 

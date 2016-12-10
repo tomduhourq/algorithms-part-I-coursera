@@ -1,17 +1,18 @@
 package week01;
 
 /**
- * A class representing the Union Find problem
+ * A class representing the dynamic connectivity problem
+ * by a quick find (connected) operation but slow union.
  *
  * Initialization: O(n)
  * Connected/Find: O(1)
  * Union: O(n)
  *
- * The defect is that union is expensive
+ * The defect is that union is expensive.
  */
-public class QuickFindUF extends BaseUF {
+public class QuickFind extends BaseUF {
 
-    public QuickFindUF(int N)  {
+    public QuickFind(int N)  {
         this.elements = initializeElements(N);
     }
 

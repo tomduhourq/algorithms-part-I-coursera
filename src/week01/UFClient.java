@@ -10,12 +10,12 @@ import edu.princeton.cs.algs4.StdOut;
 public class UFClient {
     public static void main(String[] args) {
         int n = StdIn.readInt();
-        QuickFindUF quickFindUf = new QuickFindUF(n);
+        QuickFind quickFind = new QuickFind(n);
         while(!StdIn.isEmpty()) {
             int p = StdIn.readInt();
             int q = StdIn.readInt();
-            if(!quickFindUf.connected(p, q)) {
-                quickFindUf.union(p, q);
+            if(!quickFind.connected(p, q)) {
+                quickFind.union(p, q);
                 StdOut.println(p + " " + q);
             }
         }

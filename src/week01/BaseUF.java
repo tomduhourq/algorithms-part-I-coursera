@@ -14,9 +14,9 @@ public abstract class BaseUF {
         return p < actualLength && q < actualLength;
     }
 
-    protected int[] initializeElements(int N) {
-        int[] result = new int[N];
-        for (int i = 0; i < N; i++) {
+    protected int[] initializeElements(int size) {
+        int[] result = new int[size];
+        for (int i = 0; i < size; i++) {
             result[i] = i;
         }
         return result;
