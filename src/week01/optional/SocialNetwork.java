@@ -27,7 +27,7 @@ public class SocialNetwork {
             }
         }
         catch (IOException e){
-            StdOut.println(String.format("Couldn't read file from path: ", path));
+            StdOut.println(String.format("Couldn't read file from path: %s", path));
         }
     }
 

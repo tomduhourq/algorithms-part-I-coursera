@@ -1,6 +1,5 @@
 package test.week01;
 
-import junit.runner.BaseTestRunner;
 import org.junit.Before;
 import org.junit.Test;
 import test.UnitBaseRunner;
@@ -8,7 +7,6 @@ import week01.optional.FindMaxOnComponent;
 
 import static org.hamcrest.core.IsEqual.equalTo;
 import static org.junit.Assert.assertThat;
-import static org.junit.Assert.assertTrue;
 
 /**
  * Created by tom on 12/11/16.
