@@ -7,7 +7,7 @@ package week01;
  *
  * Initialization: O(2n) = O(n)
  * Find/Connected: O(lg N)
- * Union: O(lg n)
+ * Union: O(lg N)
  *
  * The depth of any node `x` is increased by 1 when the tree T1
  * containing `x` is merged into another tree T2.
@@ -19,7 +19,7 @@ package week01;
 public class WeightedQuickUnion extends BaseUF {
 
     /** Extra array holding the size of the tree of element i*/
-    private int[] treeSizes;
+    protected int[] treeSizes;
 
     /**
      * Initializes both elements and treeSizes with 1,
