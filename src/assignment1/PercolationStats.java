@@ -6,21 +6,19 @@ import edu.princeton.cs.algs4.StdStats;
 
 public class PercolationStats {
 
-    private Percolation percolation;
     private double[] percolationThresholds;
-    private int T;
+    private int t;
 
     public PercolationStats(final int n,final int trials) {
         validateParams(n, trials);
-        this.percolation = new Percolation(n);
         this.percolationThresholds = new double[trials];
-        this.T = trials;
+        this.t = trials;
         for (int i = 0; i < trials; i++) {
-            while(!percolation.percolates()) {
+            Percolation percolation = new Percolation(n);
+            while (!percolation.percolates()) {
                 percolation.open(StdRandom.uniform(1, n + 1), StdRandom.uniform(1, n + 1));
             }
             percolationThresholds[i] = fractionOpened(percolation, n);
-            this.percolation = new Percolation(n);
         }
     }
 
@@ -32,11 +30,11 @@ public class PercolationStats {
     }
 
     public double confidenceLo()  {
-        return mean() - (1.96 * stddev() / Math.sqrt(T));
+        return mean() - (1.96 * stddev() / Math.sqrt(t));
     }
 
     public double confidenceHi() {
-        return mean() + (1.96 * stddev() / Math.sqrt(T));
+        return mean() + (1.96 * stddev() / Math.sqrt(t));
     }
 
     public static void main(final String[] args) {
@@ -46,7 +44,7 @@ public class PercolationStats {
 
 
     private void validateParams(final int n, final int trials) {
-        if(n <= 0 || trials <= 0) {
+        if (n <= 0 || trials <= 0) {
             throw new IllegalArgumentException("Params should be greater than 0.");
         }
     }
@@ -55,7 +53,7 @@ public class PercolationStats {
         int count = 0;
         for (int i = 1; i <= size; i++) {
             for (int j = 1; j <= size; j++) {
-                if(percolation.isOpen(i, j)) {
+                if (percolation.isOpen(i, j)) {
                     count++;
                 }
             }

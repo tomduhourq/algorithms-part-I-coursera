@@ -3,18 +3,21 @@ package assignment1;
 import edu.princeton.cs.algs4.WeightedQuickUnionUF;
 
 /**
- * Numbers are coming to the API methods as (1, N)
+ * Numbers are coming to the API methods as (1, n)
  */
 public class Percolation {
 
-    private int N;
+    private int n;
     private boolean[] opened;
     private WeightedQuickUnionUF uf;
     private int top;
     private int bottom;
 
     public Percolation(final int n) {
-        this.N = n;
+        if (n <= 0) {
+            throw new IllegalArgumentException("Size must be greater than 0");
+        }
+        this.n = n;
         this.opened = new boolean[n * n];
         this.uf = new WeightedQuickUnionUF((n * n) + 2);
         this.top = n * n;
@@ -22,7 +25,7 @@ public class Percolation {
     }
 
     /**
-     * Validates that the (x, y) point is within the bounds of the square (N, N),
+     * Validates that the (x, y) point is within the bounds of the square (n, n),
      * if this cell is not yet opened, updates the opened array to true on the 1D position
      * and creates a union between neighbors from left, right, up and down.
      */
@@ -30,7 +33,7 @@ public class Percolation {
         validateBounds(row, col);
         int position1D = position(row, col);
         boolean isPositionOpened = opened[position1D];
-        if(!isPositionOpened) {
+        if (!isPositionOpened) {
             opened[position1D] = true;
             connectTopOrBottom(row, position1D);
             unionWithNeighbors(row, col, position1D);
@@ -60,14 +63,14 @@ public class Percolation {
 
     /**
      * Validates that the (x, y) position is inside the
-     * square limited by (N, N)
+     * square limited by (n, n)
      *
      * @param row the x coordinate
      * @param col the y coordinate
      */
     private void validateBounds(final int row,final int col) {
-        if(row <= 0 || row > N || col <= 0 || col > N) {
-            throw new IllegalArgumentException("(" + row + "," + col + ") out of bounds. Size is " + N);
+        if (row <= 0 || row > n || col <= 0 || col > n) {
+            throw new IndexOutOfBoundsException("(" + row + "," + col + ") out of bounds. Size is " + n);
         }
     }
 
@@ -80,7 +83,7 @@ public class Percolation {
      * @return the direct position to access the opened array
      */
     private int position(final int row,final int column) {
-        return ((row * N) + column) - (N + 1);
+        return ((row * n) + column) - (n + 1);
     }
 
     /**
@@ -89,34 +92,34 @@ public class Percolation {
      * using the UF object.
      */
     private void unionWithNeighbors(final int row,final int col,final int position1D) {
-        int upPosition = position1D - N;
-        int downPosition = position1D + N;
+        int upPosition = position1D - n;
+        int downPosition = position1D + n;
         int leftPosition = position1D - 1;
         int rightPosition = position1D + 1;
 
         // Verify update on up neighbor
-        if(row > 1 && opened[upPosition]) {
+        if (row > 1 && opened[upPosition]) {
             uf.union(position1D, upPosition);
         }
         // Verify update on down neighbor
-        if(row < N && opened[downPosition]) {
+        if (row < n && opened[downPosition]) {
             uf.union(position1D, downPosition);
         }
         // Verify update on the left neighbor
-        if(row > 1 && col > 1 && opened[leftPosition]) {
+        if (row > 1 && col > 1 && opened[leftPosition]) {
             uf.union(position1D, leftPosition);
         }
         // Verify update on right neighbor
-        if(row < N && col < N && opened[rightPosition]) {
+        if (row < n && col < n && opened[rightPosition]) {
             uf.union(position1D, rightPosition);
         }
     }
 
     private void connectTopOrBottom(final int row,final int position1D) {
-        if(row == 1) {
+        if (row == 1) {
             uf.union(position1D, top);
         }
-        if(row == N) {
+        if (row == n) {
             uf.union(position1D, bottom);
         }
     }
