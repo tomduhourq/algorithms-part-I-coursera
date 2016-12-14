@@ -10,11 +10,15 @@ public class Percolation {
     private int N;
     private boolean[] opened;
     private WeightedQuickUnionUF uf;
+    private int top;
+    private int bottom;
 
-    public Percolation(int n) {
+    public Percolation(final int n) {
         this.N = n;
         this.opened = new boolean[n * n];
-        this.uf = new WeightedQuickUnionUF(n * n);
+        this.uf = new WeightedQuickUnionUF((n * n) + 2);
+        this.top = n * n;
+        this.bottom = (n * n) + 1;
     }
 
     /**
@@ -22,34 +26,34 @@ public class Percolation {
      * if this cell is not yet opened, updates the opened array to true on the 1D position
      * and creates a union between neighbors from left, right, up and down.
      */
-    public void open(int row, int col)  {
+    public void open(final int row,final int col)  {
         validateBounds(row, col);
         int position1D = position(row, col);
         boolean isPositionOpened = opened[position1D];
         if(!isPositionOpened) {
             opened[position1D] = true;
+            connectTopOrBottom(row, position1D);
             unionWithNeighbors(row, col, position1D);
         }
     }
 
     /** Getter for opened */
-    public boolean isOpen(int row, int col) {
+    public boolean isOpen(final int row, final int col) {
         validateBounds(row, col);
         return opened[position(row, col)];
     }
 
     /**
-     * Validates that the site is opened and that it connects
-     * top and bottom.
+     * Validates that the site is opened and that it is connected to the top
      */
-    public boolean isFull(int row, int col) {
+    public boolean isFull(final int row,final int col) {
         validateBounds(row, col);
         int position1D = position(row, col);
-        return opened[position1D]; //&& connectsTopToBottom(position1D);
+        return opened[position1D] && uf.connected(top, position1D);
     }
 
     public boolean percolates()  {
-        return false;
+        return uf.connected(top, bottom);
     }
 
     /** Helper methods */
@@ -61,7 +65,7 @@ public class Percolation {
      * @param row the x coordinate
      * @param col the y coordinate
      */
-    private void validateBounds(int row, int col) {
+    private void validateBounds(final int row,final int col) {
         if(row <= 0 || row > N || col <= 0 || col > N) {
             throw new IllegalArgumentException("(" + row + "," + col + ") out of bounds. Size is " + N);
         }
@@ -75,7 +79,7 @@ public class Percolation {
      * @param column the y component
      * @return the direct position to access the opened array
      */
-    private int position(int row, int column) {
+    private int position(final int row,final int column) {
         return ((row * N) + column) - (N + 1);
     }
 
@@ -84,7 +88,7 @@ public class Percolation {
      * up, left down and right neighbors before performing the union.
      * using the UF object.
      */
-    private void unionWithNeighbors(int row, int col, int position1D) {
+    private void unionWithNeighbors(final int row,final int col,final int position1D) {
         int upPosition = position1D - N;
         int downPosition = position1D + N;
         int leftPosition = position1D - 1;
@@ -105,6 +109,15 @@ public class Percolation {
         // Verify update on right neighbor
         if(row < N && col < N && opened[rightPosition]) {
             uf.union(position1D, rightPosition);
+        }
+    }
+
+    private void connectTopOrBottom(final int row,final int position1D) {
+        if(row == 1) {
+            uf.union(position1D, top);
+        }
+        if(row == N) {
+            uf.union(position1D, bottom);
         }
     }
 

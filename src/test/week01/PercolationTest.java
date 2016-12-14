@@ -5,6 +5,7 @@ import org.junit.Before;
 import org.junit.Test;
 import test.UnitBaseRunner;
 
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 /**
@@ -30,8 +31,6 @@ public class PercolationTest extends UnitBaseRunner {
         assertTrue(p.isOpen(4, 4));
     }
 
-
-
     @Test(expected = IllegalArgumentException.class)
     public void outOfBoundsRowPositiveTest() {
         p.isOpen(N + 1, 1);
@@ -50,5 +49,32 @@ public class PercolationTest extends UnitBaseRunner {
     @Test(expected = IllegalArgumentException.class)
     public void outOfBoundsColumnZeroTest() {
         p.isOpen(1, 0);
+    }
+
+    @Test
+    public void isFullTest() {
+        p.open(1, 3);
+        p.open(2, 3);
+        assertTrue(p.isFull(2, 3));
+    }
+
+    @Test
+    public void percolatesTest() {
+        p.open(1, 3);
+        p.open(2, 3);
+        p.open(2, 2);
+        p.open(3, 2);
+        p.open(4, 2);
+        assertTrue(p.percolates());
+    }
+
+    @Test
+    public void doesNotPercolateTest() {
+        p.open(1, 3);
+        p.open(2, 3);
+        p.open(2, 2);
+        p.open(3, 2);
+        p.open(4, 1);
+        assertFalse(p.percolates());
     }
 }

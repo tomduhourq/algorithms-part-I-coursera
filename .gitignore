@@ -12,3 +12,4 @@ hs_err_pid*
 .idea/
 assignment-1.iml
 out/
+*.DS_Store
