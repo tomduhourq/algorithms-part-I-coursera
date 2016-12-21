@@ -1,9 +1,9 @@
-package test.week02;
+package test.week02.collections;
 
 import org.junit.Before;
 import org.junit.Test;
 import test.UnitBaseRunner;
-import week02.LinkedListGenericStack;
+import week02.collections.LinkedListGenericStack;
 
 import static org.hamcrest.core.IsEqual.equalTo;
 import static org.junit.Assert.assertThat;

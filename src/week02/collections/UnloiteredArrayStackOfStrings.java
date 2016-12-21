@@ -1,4 +1,4 @@
-package week02;
+package week02.collections;
 
 /**
  * Improves garbage collection by making the position to be popped null

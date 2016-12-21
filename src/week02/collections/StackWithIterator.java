@@ -1,4 +1,4 @@
-package week02;
+package week02.collections;
 
 import java.util.Iterator;
 import java.util.NoSuchElementException;

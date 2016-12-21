@@ -1,4 +1,4 @@
-package week02;
+package week02.collections;
 
 /**
  * Uses the same idea of generics but over a fixed size

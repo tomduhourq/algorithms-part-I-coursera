@@ -1,4 +1,4 @@
-package week02;
+package week02.collections;
 
 /**
  * Uses repeated doubling to alter the size of the array and capacity

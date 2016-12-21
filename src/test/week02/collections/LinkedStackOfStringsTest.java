@@ -1,20 +1,20 @@
-package test.week02;
+package test.week02.collections;
 
 import org.junit.Before;
 import org.junit.Test;
 import test.UnitBaseRunner;
-import week02.ArrayStackOfStrings;
+import week02.collections.LinkedStackOfStrings;
 
 import static org.hamcrest.core.IsEqual.equalTo;
 import static org.junit.Assert.assertThat;
 
-public class ArrayStackOfStringsTest extends UnitBaseRunner {
+public class LinkedStackOfStringsTest extends UnitBaseRunner {
 
-    private ArrayStackOfStrings stack;
+    private LinkedStackOfStrings stack;
 
     @Before
     public void setup() {
-        stack = new ArrayStackOfStrings(4);
+        stack = new LinkedStackOfStrings();
     }
 
     @Test
@@ -23,7 +23,7 @@ public class ArrayStackOfStringsTest extends UnitBaseRunner {
         assertThat(stack.pop(), equalTo("Hi"));
     }
 
-    @Test(expected = ArrayIndexOutOfBoundsException.class)
+    @Test(expected = NullPointerException.class)
     public void popOnEmptyStackTest() {
         stack.pop();
     }

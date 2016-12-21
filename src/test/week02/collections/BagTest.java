@@ -1,9 +1,9 @@
-package test.week02;
+package test.week02.collections;
 
 import org.junit.Before;
 import org.junit.Test;
 import test.UnitBaseRunner;
-import week02.Bag;
+import week02.collections.Bag;
 
 import static org.hamcrest.Matchers.*;
 import static org.junit.Assert.assertThat;
