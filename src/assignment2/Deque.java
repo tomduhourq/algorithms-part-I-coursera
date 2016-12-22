@@ -98,39 +98,6 @@ public class Deque<Item> implements Iterable<Item> {
         }
     }
 
-//    private void resizeDoubleCheck() {
-//        if (isFull()) {
-//            resize(2 * items.length);
-//        }
-//    }
-//
-//    private void resizeHalfCheck() {
-//        int size = last - first;
-//        if (size > 0 && size == items.length / 4) {
-//            resize(items.length / 2);
-//        }
-//    }
-//
-//    private boolean isFull() {
-//        return (first <= 0 && items[first] != null) ||
-//               (last >= items.length - 1 && items[last] != null);
-//    }
-//
-//    /**
-//     * Resizes the items array, by adding the same (almost)
-//     * places to the front and back until reaching the capacity.
-//     */
-//    private void resize(int newCapacity) {
-//        int halfCapacity = newCapacity / 2;
-//        Item[] temp = (Item[]) new Object[newCapacity];
-//        for (int i = 0; i < items.length; i++) {
-//            temp[i + halfCapacity] = items[i];
-//        }
-//        first = first + halfCapacity;
-//        last = last + halfCapacity;
-//        items = temp;
-//    }
-
     /** Inner classes. */
     private class ListIterator implements Iterator<Item> {
 
