@@ -1,0 +1,13 @@
+1) Given two arrays 𝚊[] and 𝚋[], each containing n distinct 2D points in the plane,
+design a subquadratic algorithm to count the number of points that are contained
+both in array 𝚊[] and array 𝚋[].
+
+Load the elements on a map of booleans to false.
+Run the second array changing the existent to true. filter them by flag in true
+
+Hint: shellsort (or any other subquadratic sort).
+
+2) Permutation. Given two integer arrays of size n, design a subquadratic algorithm to determine whether one is a
+permutation of the other. That is, do they contain exactly the same entries but, possibly, in a different order.
+
+Hint: Sort both

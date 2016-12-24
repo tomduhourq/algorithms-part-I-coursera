@@ -12,8 +12,8 @@ public class SortHelper {
     /**
      * Swaps item at i index on j index
      */
-    protected static void swap(Comparable[] as, int i, int j) {
-        Comparable swap = as[i];
+    protected static void swap(Object[] as, int i, int j) {
+        Object swap = as[i];
         as[i] = as[j];
         as[j] = swap;
     }
