@@ -19,7 +19,11 @@ public class SortHelper {
     }
 
     public static boolean isSorted(Comparable[] as) {
-        for (int i = 1; i < as.length; i++) {
+        return isSorted(as, 0, as.length);
+    }
+
+    public static boolean isSorted(Comparable[] as, int from, int to) {
+        for (int i = from + 1; i < to; i++) {
             if (less(as[i], as[i - 1])) {
                 return false;
             }
