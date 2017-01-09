@@ -16,7 +16,6 @@ public class FastCollinearPoints {
 
     public FastCollinearPoints(Point[] points) {
         checkInputPoints(points);
-        Arrays.sort(points);
         List<LineSegment> lineSegments = new ArrayList<>();
         for (int i = 0; i < points.length - 1; i++) {
             Map<Double, List<Point>> slopesWithI = new HashMap<>();
